@@ -1,0 +1,134 @@
+
+<%@page import="bean.Categorybean"%>
+<%@page import="bean.Accountbean"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<%
+ response.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
+	
+    ArrayList<Categorybean> ds=(ArrayList<Categorybean>)request.getAttribute("dsloai");
+ %>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    	
+<script src="js/jquery-1.11.1.min.js"></script>   
+   <style type="text/css">.table&amp;amp;gt;tbody&amp;amp;gt;tr&amp;amp;gt;td, .table&amp;amp;gt;tfoot&amp;amp;gt;tr&amp;amp;gt;td {  
+vertical-align: middle;
+}
+ 
+@media screen and (max-width: 600px) { 
+table#cart tbody td .form-control { 
+width:20%; 
+display: inline !important;
+} 
+ 
+.actions .btn { 
+width:36%; 
+margin:1.5em 0;
+} 
+ 
+.actions .btn-info { 
+float:left;
+} 
+ 
+.actions .btn-danger { 
+float:right;
+} 
+ 
+table#cart thead {
+display: none;
+} 
+ 
+table#cart tbody td {
+display: block;
+padding: .6rem;
+min-width:320px;
+} 
+ 
+table#cart tbody tr td:first-child {
+background: #333;
+color: #fff;
+} 
+ 
+table#cart tbody td:before { 
+content: attr(data-th);
+font-weight: bold; 
+display: inline-block;
+width: 8rem;
+} 
+ 
+table#cart tfoot td {
+display:block;
+} 
+table#cart tfoot td .btn {
+display:block;
+}
+}</style>
+</head>
+<body>
+<h2 class="text-center">Quản lý loại sản phẩm</h2>
+<div class="container"> 
+ <table id="cart" class="table table-hover table-condensed"> 
+  <thead> 
+ <tr>
+    <form action="addLoai"  method="post">
+    	 <div class="modal-body">			
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input name="txtname" type="text" class="form-control" required value="">
+                            </div>
+                           
+
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success" value="Thêm">
+                        </div>
+    </form>
+    </tr>
+   <tr> 
+    <th style="width:10%">Mã loại sản phẩm</th> 
+    <th style="width:50%">Tên loại sản phẩm</th> 
+  
+    <th style="width:22%" class="text-center">Lựa chọn</th> 
+    <th style="width:10%"> </th> 
+   </tr> 
+  </thead> 
+  <tbody>
+   <%
+                  int n=ds.size();
+                  for(int i=0;i<n;i++) {
+                    Categorybean s=ds.get(i);
+                  %>
+  <tr> 
+   <td data-th="Product"> 
+    <%=s.getCid() %>
+    </td> 
+   <td data-th=""><%=s.getCname() %></td> 
+  
+  
+  
+   </td> 
+  
+   <td class="actions" data-th="">
+    <a href="loadLoai?maloai=<%=s.getCid() %>" class="btn btn-info btn-sm">Sửa<i class="fa fa-edit"></i></a>
+   
+    <a href="adminXoaLoai?maloai=<%=s.getCid() %>" class="btn btn-danger btn-sm">Xóa<i class="fa fa-trash-o"></i></a>
+    
+   </td> 
+  </tr> 
+ 
+  </tbody>
+  <%} %>
+  <tfoot> 
+   
+  </tfoot> 
+ </table>
+</div>
+</body>
+</html>
